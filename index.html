@@ -14,7 +14,7 @@
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
-    margin: 20px 0;
+    margin: 20px 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -22,25 +22,76 @@
 .pdf-button:hover {
     background-color: #2a4a6b; /* Lighter blue on hover */
 }
+
+.spin-button {
+    background-color: #fd7f28; /* Orange */
+    color: #1a365d; /* Dark blue text */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 20px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.spin-button:hover {
+    background-color: #ff9a4d; /* Lighter orange on hover */
+}
+
+#logo {
+    width: 300px;
+    height: auto;
+    display: block;
+    transition: transform 1s ease;
+}
+
+.spinning {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
 </style>
 </head>
 <body>
     <h1>New Age</h1>
-    <img src="logo.png" alt="My awesome image" style="width: 300px; height: auto;">
+    <img id="logo" src="logo.png" alt="My awesome image">
+    
+    <div>
     <a href="Document.pdf" class="pdf-button" target="_blank">View PDF</a>
+        <button class="spin-button" onclick="toggleSpin()">Spin Logo</button>
+    </div>
+    
     <p>This is my first website deployed to AWS!</p>
     <p>🎉 Successfully hosted on S3! 🎉</p>
     <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
-    <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
-    <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
-    <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
-    <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
-    <p>🚀 This was automatically deployed from GitHub Actions! 🚀</p>
 
-
-
-
-
-    <p>🚀new line🚀</p>
+    <script>
+        let isSpinning = false;
+        
+        function toggleSpin() {
+            const logo = document.getElementById('logo');
+            const button = document.querySelector('.spin-button');
+            
+            if (isSpinning) {
+                logo.classList.remove('spinning');
+                button.textContent = 'Spin Logo';
+                isSpinning = false;
+            } else {
+                logo.classList.add('spinning');
+                button.textContent = 'Stop Spinning';
+                isSpinning = true;
+            }
+        }
+    </script>
 </body>
 </html>
